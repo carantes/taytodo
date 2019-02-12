@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import './App.css';
-import TodoList from './molecules/TodoList'
-
-// Todo: Redux
-const todos = [
-  { id: 1, text: 'Clean the house' },
-  { id: 2, text: 'Study English'}
-]
+import VisibleTodoList from './organisms/VisibleTodoList'
+import FilterLink from './organisms/FilterLink'
+import AddTodo from './organisms/AddTodo'
+import { VisibilityFilters } from './actions/index'
 
 class App extends Component {
   render() {
     return (
-      <TodoList todos={todos} onTodoClick={(id) => console.log(id)} />
+      <div>
+        <AddTodo />
+        <VisibleTodoList />
+        <p>
+          Show: <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+          {', '}
+          <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+          {', '}
+          <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+        </p>
+      </div>
     );
   }
 }
